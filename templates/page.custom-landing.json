@@ -1,0 +1,69 @@
+{
+  "sections": {
+    "custom_banner": {
+      "type": "custom-banner",
+      "settings": {
+        "heading": "TISSO VISON",
+        "subheading": "The Gift Guide",
+        "description": "Discover Joy. Find Ultimate Holiday Gift Inspiration.",
+        "button_text": "CHOOSE GIFT",
+        "button_link": "#products",
+        "secondary_button_text": "SHOP NOW",
+        "secondary_button_link": "/collections/all"
+      }
+    },
+    "custom_product_grid": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_5": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_6": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "product_5",
+        "product_6"
+      ]
+    }
+  },
+  "order": [
+    "custom_banner",
+    "custom_product_grid"
+  ]
+}

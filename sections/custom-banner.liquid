@@ -1,0 +1,200 @@
+{% comment %}
+  Custom Banner Section
+  This section creates a banner with editable text and animated buttons
+{% endcomment %}
+
+<div class="custom-banner" id="custom-banner-{{ section.id }}">
+  <div class="banner-content">
+    <div class="banner-text">
+      {% if section.settings.heading != blank %}
+        <h1 class="banner-heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+        <p class="banner-subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <p class="banner-description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+    
+    <div class="banner-buttons">
+      {% if section.settings.button_text != blank %}
+        <button class="banner-btn primary-btn animated-btn" onclick="window.location.href='{{ section.settings.button_link }}'">
+          {{ section.settings.button_text }}
+        </button>
+      {% endif %}
+      
+      {% if section.settings.secondary_button_text != blank %}
+        <button class="banner-btn secondary-btn animated-btn" onclick="window.location.href='{{ section.settings.secondary_button_link }}'">
+          {{ section.settings.secondary_button_text }}
+        </button>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .banner-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .banner-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .banner-subheading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+  
+  .banner-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+  
+  .banner-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .banner-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .primary-btn {
+    background: #ff6b6b;
+    color: white;
+  }
+  
+  .secondary-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .animated-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  
+  .primary-btn:hover {
+    background: #ff5252;
+  }
+  
+  .secondary-btn:hover {
+    background: white;
+    color: #667eea;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .custom-banner {
+      padding: 60px 15px;
+    }
+    
+    .banner-heading {
+      font-size: 2rem;
+    }
+    
+    .banner-subheading {
+      font-size: 1.2rem;
+    }
+    
+    .banner-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .banner-btn {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Welcome to Our Store"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover amazing products"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Explore our curated selection and find the perfect gifts for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link",
+      "default": "/pages/about"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}
