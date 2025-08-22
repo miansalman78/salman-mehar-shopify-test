@@ -13,6 +13,10 @@
         <span></span>
       </div>
       <h2 class="brand-name">TISSO VISION</h2>
+      <div class="header-right">
+        <span class="find-gift-text">Find the ideal gift for your loved ones.</span>
+        <button class="choose-gift-btn">CHOOSE GIFT →</button>
+      </div>
     </div>
     
     <!-- Gift Guide Section -->
@@ -23,36 +27,84 @@
           {% if section.settings.description != blank %}
             {{ section.settings.description }}
           {% else %}
-            Explore our curated selection and find the perfect gifts to delight your loved ones with thoughtful presents.
+            Discover Joy. Your Ultimate Holiday Gift Destination.<br>
+            Explore our curated selection and find the perfect gifts to<br>
+            delight your loved ones this holiday season.
           {% endif %}
         </p>
         
         {% if section.settings.button_text != blank %}
           <button class="shop-now-btn" onclick="window.location.href='{{ section.settings.button_link }}'">
-            {{ section.settings.button_text }}
+            {{ section.settings.button_text }} →
           </button>
         {% endif %}
+        
+        <p class="sustainability-text">SUSTAINABLE. ETHICALLY MADE CLOTHING IN SIZES XS TO 6X.</p>
       </div>
       
-      <!-- Decorative Elements -->
-      <div class="decorative-elements">
-        <div class="gift-icons">
-          <div class="icon-item">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="8" width="18" height="4" rx="1"/>
-              <path d="m12 8-2-4h4l-2 4"/>
-              <path d="M8 12v9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-9"/>
+      <!-- Illustrated Elements -->
+      <div class="illustrated-elements">
+        <div class="illustration-grid">
+          <!-- Camera -->
+          <div class="illustration-item camera">
+            <svg viewBox="0 0 100 80" fill="none" stroke="#333" stroke-width="1.5">
+              <rect x="10" y="20" width="80" height="50" rx="5"/>
+              <circle cx="50" cy="45" r="15"/>
+              <circle cx="50" cy="45" r="8"/>
+              <rect x="65" y="25" width="8" height="5" rx="2"/>
+              <path d="M30 20 L35 10 L65 10 L70 20"/>
             </svg>
           </div>
-          <div class="icon-item">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12,6 12,12 16,14"/>
+          
+          <!-- Watch -->
+          <div class="illustration-item watch">
+            <svg viewBox="0 0 60 80" fill="none" stroke="#333" stroke-width="1.5">
+              <rect x="15" y="25" width="30" height="30" rx="15"/>
+              <path d="M20 15 L40 15 L35 25 L25 25 Z"/>
+              <path d="M20 65 L40 65 L35 55 L25 55 Z"/>
+              <circle cx="30" cy="40" r="2"/>
+              <path d="M30 30 L30 40 L35 45"/>
             </svg>
           </div>
-          <div class="icon-item">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          
+          <!-- Sunglasses -->
+          <div class="illustration-item sunglasses">
+            <svg viewBox="0 0 100 40" fill="none" stroke="#333" stroke-width="1.5">
+              <circle cx="25" cy="20" r="15"/>
+              <circle cx="75" cy="20" r="15"/>
+              <path d="M40 20 L60 20"/>
+              <path d="M10 15 L5 10"/>
+              <path d="M90 15 L95 10"/>
+            </svg>
+          </div>
+          
+          <!-- Notebook -->
+          <div class="illustration-item notebook">
+            <svg viewBox="0 0 60 80" fill="none" stroke="#333" stroke-width="1.5">
+              <rect x="10" y="10" width="40" height="60" rx="2"/>
+              <path d="M10 25 L50 25"/>
+              <path d="M10 35 L50 35"/>
+              <path d="M10 45 L50 45"/>
+              <circle cx="15" cy="15" r="2"/>
+            </svg>
+          </div>
+          
+          <!-- Compass -->
+          <div class="illustration-item compass">
+            <svg viewBox="0 0 60 60" fill="none" stroke="#333" stroke-width="1.5">
+              <circle cx="30" cy="30" r="25"/>
+              <path d="M30 10 L35 25 L30 30 L25 25 Z" fill="#333"/>
+              <path d="M30 50 L25 35 L30 30 L35 35 Z"/>
+              <circle cx="30" cy="30" r="3"/>
+            </svg>
+          </div>
+          
+          <!-- Pen -->
+          <div class="illustration-item pen">
+            <svg viewBox="0 0 80 20" fill="none" stroke="#333" stroke-width="1.5">
+              <rect x="10" y="8" width="60" height="4" rx="2"/>
+              <path d="M70 8 L75 6 L75 14 L70 12"/>
+              <circle cx="15" cy="10" r="3"/>
             </svg>
           </div>
         </div>
@@ -63,24 +115,27 @@
 
 <style>
   .tisso-vision-banner {
-    background: #f8f9fa;
-    min-height: 500px;
+    background: #FFD700;
+    min-height: 600px;
     padding: 0;
     position: relative;
     overflow: hidden;
+    border: 3px solid #333;
   }
   
   .banner-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
+    height: 100%;
   }
   
   .brand-header {
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
-    padding: 20px 0;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    padding: 0;
   }
   
   .hamburger-menu {
@@ -95,7 +150,7 @@
     width: 25px;
     height: 3px;
     background: #333;
-    border-radius: 2px;
+    border-radius: 0;
     transition: all 0.3s ease;
   }
   
@@ -105,43 +160,28 @@
     color: #333;
     margin: 0;
     letter-spacing: 2px;
+    flex: 1;
   }
   
-  .gift-guide-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+  .header-right {
+    display: flex;
     align-items: center;
-    min-height: 400px;
+    gap: 20px;
   }
   
-  .gift-guide-content {
-    padding: 40px 0;
-  }
-  
-  .gift-guide-title {
-    font-size: 48px;
-    font-weight: 800;
-    color: #333;
-    margin: 0 0 20px 0;
-    line-height: 1.2;
-  }
-  
-  .gift-guide-subtitle {
-    font-size: 16px;
-    color: #666;
-    line-height: 1.6;
-    margin: 0 0 30px 0;
-    max-width: 400px;
-  }
-  
-  .shop-now-btn {
-    background: #333;
-    color: white;
-    border: none;
-    padding: 15px 30px;
+  .find-gift-text {
     font-size: 14px;
-    font-weight: 600;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .choose-gift-btn {
+    background: #FFD700;
+    color: #333;
+    border: 2px solid #333;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
@@ -149,37 +189,131 @@
     transition: all 0.3s ease;
   }
   
+  .choose-gift-btn:hover {
+    background: #333;
+    color: #FFD700;
+  }
+  
+  .gift-guide-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    min-height: 450px;
+  }
+  
+  .gift-guide-content {
+    padding: 0;
+  }
+  
+  .gift-guide-title {
+    font-size: 72px;
+    font-weight: 800;
+    color: #333;
+    margin: 0 0 30px 0;
+    line-height: 0.9;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .gift-guide-subtitle {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin: 0 0 40px 0;
+    max-width: 500px;
+    font-weight: 400;
+  }
+  
+  .shop-now-btn {
+    background: #333;
+    color: #FFD700;
+    border: none;
+    padding: 15px 30px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    display: inline-block;
+  }
+  
   .shop-now-btn:hover {
     background: #555;
     transform: translateY(-2px);
   }
   
-  .decorative-elements {
+  .sustainability-text {
+    font-size: 11px;
+    color: #333;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  .illustrated-elements {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    position: relative;
   }
   
-  .gift-icons {
+  .illustration-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    opacity: 0.1;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    height: 400px;
+    opacity: 0.6;
   }
   
-  .icon-item {
+  .illustration-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80px;
-    height: 80px;
-    border: 2px solid #333;
-    border-radius: 50%;
+    transition: all 0.3s ease;
   }
   
-  .icon-item svg {
-    color: #333;
+  .illustration-item svg {
+    width: 60px;
+    height: 60px;
+    stroke: #333;
+    stroke-width: 1.5;
+  }
+  
+  .illustration-item.camera {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .illustration-item.watch {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .illustration-item.sunglasses {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  
+  .illustration-item.notebook {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  
+  .illustration-item.compass {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  
+  .illustration-item.pen {
+    grid-column: 3;
+    grid-row: 3;
   }
   
   /* Responsive Design */
