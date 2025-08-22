@@ -26,27 +26,10 @@
                   </svg>
                 </div>
               {% endif %}
-              
-              <div class="product-overlay">
-                <button class="quick-view-btn modern-btn" onclick="openProductPopup('{{ product.id }}', '{{ block.id }}')">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
-                  <span>Quick View</span>
-                </button>
-              </div>
             </div>
             
             <div class="product-info">
               <h3 class="product-title">{{ product.title }}</h3>
-              <p class="product-description">
-                {% if product.description != blank %}
-                  {{ product.description | strip_html | truncate: 80 }}
-                {% else %}
-                  Premium quality product from our collection
-                {% endif %}
-              </p>
               <div class="product-price">
                 {% if product.compare_at_price > product.price %}
                   <span class="price-sale">{{ product.price | money }}</span>
@@ -55,6 +38,39 @@
                   <span class="price-regular">{{ product.price | money }}</span>
                 {% endif %}
               </div>
+              <p class="product-description">
+                {% if product.description != blank %}
+                  {{ product.description | strip_html | truncate: 60 }}
+                {% else %}
+                  This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief.
+                {% endif %}
+              </p>
+              
+              <!-- Color Options -->
+              <div class="color-options">
+                <span class="color-label">Color</span>
+                <div class="color-swatches">
+                  <div class="color-swatch active" data-color="White" style="background: #fff; border: 1px solid #ddd;"></div>
+                  <div class="color-swatch" data-color="Black" style="background: #000;"></div>
+                </div>
+              </div>
+              
+              <!-- Size Selection -->
+              <div class="size-selection">
+                <label for="size-{{ product.id }}">Size</label>
+                <select id="size-{{ product.id }}" class="size-select">
+                  <option>Choose your size</option>
+                  <option>XS</option>
+                  <option>S</option>
+                  <option>M</option>
+                  <option>L</option>
+                  <option>XL</option>
+                </select>
+              </div>
+              
+              <button class="shop-now-btn" onclick="openProductPopup('{{ product.id }}', '{{ block.id }}')">
+                SHOP NOW →
+              </button>
             </div>
           </div>
         {% endif %}
@@ -77,12 +93,29 @@
         <div id="popup-product-description" class="popup-description"></div>
         
         <form id="popup-product-form" class="popup-form">
-          <div id="popup-variants" class="popup-variants"></div>
-          <div class="popup-quantity">
-            <label for="popup-quantity">Quantity:</label>
-            <input type="number" id="popup-quantity" name="quantity" value="1" min="1">
+          <!-- Color Selection -->
+          <div class="popup-color-selection">
+            <span class="popup-color-label">Color</span>
+            <div class="popup-color-options">
+              <div class="popup-color-swatch active" data-color="White" style="background: #fff; border: 1px solid #ddd;"></div>
+              <div class="popup-color-swatch" data-color="Black" style="background: #000;"></div>
+            </div>
           </div>
-          <button type="submit" class="popup-add-to-cart">ADD TO CART</button>
+          
+          <!-- Size Selection -->
+          <div class="popup-size-selection">
+            <label for="popup-size">Size</label>
+            <select id="popup-size" class="popup-size-select">
+              <option>Choose your size</option>
+              <option>XS</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="popup-add-to-cart">ADD TO CART →</button>
         </form>
       </div>
     </div>
@@ -128,6 +161,7 @@
     transition: transform 0.3s ease;
     position: relative;
     aspect-ratio: 1;
+    border: 1px solid #e0e0e0;
   }
   
   .modern-card:hover {
@@ -137,7 +171,7 @@
   .product-image-container {
     position: relative;
     width: 100%;
-    height: 70%;
+    height: 50%;
     overflow: hidden;
   }
   
@@ -162,65 +196,28 @@
     color: #ccc;
   }
   
-  .product-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .modern-card:hover .product-overlay {
-    opacity: 1;
-  }
-  
-  .modern-btn {
-    background: white;
-    border: none;
-    border-radius: 25px;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-  }
-  
-  .modern-btn:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
-  }
-  
   .product-info {
     padding: 15px;
-    height: 30%;
+    height: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 8px;
   }
   
   .product-title {
     font-size: 14px;
     font-weight: 600;
-    margin: 0 0 5px 0;
+    margin: 0;
     color: #333;
     line-height: 1.3;
   }
   
   .product-description {
-    font-size: 12px;
+    font-size: 11px;
     color: #666;
-    margin: 0 0 8px 0;
-    line-height: 1.4;
+    margin: 0;
+    line-height: 1.3;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -231,6 +228,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    margin: 5px 0;
   }
   
   .price-regular, .price-sale {
@@ -243,6 +241,79 @@
     font-size: 12px;
     color: #999;
     text-decoration: line-through;
+  }
+  
+  .color-options {
+    margin: 8px 0;
+  }
+  
+  .color-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .color-swatches {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .color-swatch.active {
+    border-color: #333;
+  }
+  
+  .size-selection {
+    margin: 8px 0;
+  }
+  
+  .size-selection label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .size-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    font-size: 12px;
+    background: white;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+  }
+  
+  .shop-now-btn {
+    background: #FFD700;
+    border: none;
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    text-transform: uppercase;
+  }
+  
+  .shop-now-btn:hover {
+    background: #FFC700;
+    transform: translateY(-1px);
   }
   
   /* Responsive Design */
@@ -269,15 +340,15 @@
     }
     
     .modern-card {
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/4;
     }
     
     .product-image-container {
-      height: 75%;
+      height: 40%;
     }
     
     .product-info {
-      height: 25%;
+      height: 60%;
     }
   }
   
@@ -373,15 +444,40 @@
     overflow: hidden;
   }
   
-  .popup-variants {
+  .popup-color-selection {
     margin-bottom: 20px;
   }
   
-  .variant-option {
-    margin-bottom: 15px;
+  .popup-color-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
   }
   
-  .variant-option label {
+  .popup-color-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .popup-color-swatch {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  
+  .popup-color-swatch.active {
+    border-color: #333;
+  }
+  
+  .popup-size-selection {
+    margin-bottom: 25px;
+  }
+  
+  .popup-size-selection label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
@@ -389,7 +485,7 @@
     color: #333;
   }
   
-  .variant-option select {
+  .popup-size-select {
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
@@ -401,26 +497,6 @@
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 12px;
-  }
-  
-  .popup-quantity {
-    margin-bottom: 25px;
-    display: none;
-  }
-  
-  .popup-quantity label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 14px;
-  }
-  
-  .popup-quantity input {
-    width: 80px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 0;
-    font-size: 14px;
   }
   
   .popup-add-to-cart {
@@ -650,6 +726,25 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       closeProductPopup();
+    }
+  });
+  
+  // Color swatch functionality
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('color-swatch')) {
+      // Remove active class from siblings
+      const siblings = e.target.parentNode.querySelectorAll('.color-swatch');
+      siblings.forEach(swatch => swatch.classList.remove('active'));
+      // Add active class to clicked swatch
+      e.target.classList.add('active');
+    }
+    
+    if (e.target.classList.contains('popup-color-swatch')) {
+      // Remove active class from siblings
+      const siblings = e.target.parentNode.querySelectorAll('.popup-color-swatch');
+      siblings.forEach(swatch => swatch.classList.remove('active'));
+      // Add active class to clicked swatch
+      e.target.classList.add('active');
     }
   });
 </script>
