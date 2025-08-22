@@ -191,8 +191,8 @@ The "Soft Winter Jacket" will automatically be added to the cart along with the 
 For questions or issues related to this theme:
 
 - **Developer**: Salman Mehar
-- **Email**: [your-email@example.com]
-- **GitHub**: [your-github-username]
+- **Email**: salmanpri78@gmail.com
+- **GitHub**: miansalman3807
 
 ## 📄 License
 
